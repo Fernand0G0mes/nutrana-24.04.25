@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 type LoginModalProps = {
   isOpen: boolean;
@@ -8,11 +9,19 @@ type LoginModalProps = {
 };
 
 const LoginModal = ({ isOpen, closeModal }: LoginModalProps) => {
+  const router = useRouter();
+
   if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Adicione sua lógica de login aqui
+  };
+
+  const handleGoogleLogin = () => {
+    // Aqui você pode adicionar lógica de autenticação com Google se necessário
+    // Depois redireciona para a página do dashboard
+    router.push('/dashboard');
   };
 
   return (
@@ -52,6 +61,7 @@ const LoginModal = ({ isOpen, closeModal }: LoginModalProps) => {
         <button 
           type="button"
           className="w-full mb-4 bg-[#9c7800] text-white py-2 rounded-lg flex justify-center items-center"
+          onClick={handleGoogleLogin}
         >
           <span className="mr-2">🔒</span> INICIAR CON GOOGLE
         </button>
